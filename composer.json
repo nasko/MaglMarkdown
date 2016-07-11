@@ -26,7 +26,7 @@
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
-        "classmap": ["src"],
-		"psr-0": {"MaglMarkdown": "src"}
+        "classmap": ["./src/Module.php"],
+		"psr-4": {"MaglMarkdown\\": "src/"}
     }
 }
