@@ -27,7 +27,7 @@ class CacheListener implements ListenerAggregateInterface
         $this->cache = $cache;
     }
 
-    public function attach(EventManagerInterface $events)
+    public function attach(EventManagerInterface $events, $priority=1)
     {
         $this->listeners[] = $events->attach('markdown.render.pre', array($this, 'preRender'));
         $this->listeners[] = $events->attach('markdown.render.post', array($this, 'postRender'));

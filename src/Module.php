@@ -28,7 +28,9 @@ class Module
         $config = $sm->get('Config');
         if ($config['magl_markdown']['cache_enabled']) {
             $em = $e->getApplication()->getEventManager();
-            $em->attachAggregate($sm->get('MaglMarkdown\CacheListener'));
+            $cacheListener = $sm->get('MaglMarkdown\CacheListener');
+            $cacheListener->attach($em);
+//            $em->attachAggregate($sm->get('MaglMarkdown\CacheListener'));
         }
     }
 
@@ -42,8 +44,7 @@ class Module
         return array(
             'factories' => array(
                 'markdown' => function ($sm) {
-                    $markdownService = $sm->getServiceLocator()
-                        ->get('MaglMarkdown\MarkdownService');
+                    $markdownService = $sm->get('MaglMarkdown\MarkdownService');
 
                     return new Markdown($markdownService);
                 }
